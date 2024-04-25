@@ -15,7 +15,7 @@
   subtitle: none,
   authors: none,
   date: none,
-  univ_logo: "./images/logo1977.gif",
+  univ_logo: "./_extensions/qcreport/logo1977.gif",
   registry: "肿瘤登记处",
   abstract: none,
   header: " ",
