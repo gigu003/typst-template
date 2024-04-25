@@ -37,16 +37,19 @@
     header: context {
       if counter(page).get().first() > 2 [
       #h(1fr)
-      #header
+      #text(size:11pt)[#header]
       ]
     },
     footer: context [
-      #footer
+      #text(size:11pt)[#footer]
       #h(1fr)
+      #text(size:11pt)[
       #counter(page).display(
         "1/1",
         both: true,
       )
+      ]
+      
     ]
   )
   
@@ -64,66 +67,71 @@
   set heading(numbering: sectionnumbering)
 
   align(center)[
-    #image(univ_logo, height: 9em)
-    #block(inset: 1em)[
-    #text(size:1em, fill:luma(80))[
+    #image(univ_logo, height: 4cm)
+    #block(inset: 0.5cm)[
+    #text(size:15pt, fill:luma(80))[
       河南省癌症中心\
       河南省肿瘤登记处]
     ]
   ]
 
   if title != none {
-    align(center)[#block(above: 8em, below:4em, height: 10%)[
-      #text(weight: "bold", size: 3em)[#title]
+    align(center)[#block(above: 2cm, below:2cm, height: 10%)[
+      #text(weight: "bold", size: 30pt)[#title]
     ]]
   }
   if subtitle != none {
-    align(center)[#block(above: 4em, below:0em, height: 5%)[
-      #text(weight: "bold", size: 1.5em)[#subtitle]
+    align(center)[#block(above: 2cm, below:0cm, height: 5%)[
+      #text(weight: "bold", size: 15pt)[#subtitle]
     ]]
   }
 
   align(center)[#line(length: 80%, stroke: 1.5pt + luma(80))]
   
   if registry != none {
-    align(center)[#block(below:15em, height:5%)[
-      #text(weight: "bold", size: 1.5em)[#registry]
+    align(center)[#block(above:1cm, below:5cm, height:5%)[
+      #text(weight: "bold", size: 15pt)[#registry]
     ]]
   }
 
-  
 
   if authors != none {
     let count = authors.len()
     let ncols = calc.min(count, 3)
     grid(
       columns: (1fr,) * ncols,
-      row-gutter: 1.5em,
+      row-gutter: 16pt,
       ..authors.map(author =>
           align(left)[
+          #text(size:11pt)[
             编写: #author.name \
             单位: #author.affiliation \
             联系: #author.email
+          ]
           ]
       )
     )
   }
 
   if date != none {
-    align(center)[#block(inset: 1em)[
-     #text(size: 1.2em)[#date]
+    align(center)[#block(inset: 10pt)[
+     #text(size: 12pt)[#date]
     ]]
   }
 
   pagebreak()
 
   if toc {
-    block(above: 0em, below: 2em)[
-    #outline(
+    block(above: 2em, below: 2em)[
+    #set par(leading: 1.0em)
+    #set text(size: 13pt)
+    #align(center)[
+     #outline(
       title: "主要内容",
       depth: 2,
       indent: auto,
-    );
+    )
+    ]
     ]
   }
   if toc {

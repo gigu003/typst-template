@@ -6,15 +6,17 @@ subtitle: "第一季度"
 date: today
 registry: "河南省肿瘤登记处"
 header: "质控报告"
-footer: "https://chenq.site"
+footer: "https://www.chenq.site"
 section-numbering: "1."
 authors:
   - name: 陈 琼
     email: chenq08@126.com
     affiliation: "河南省肿瘤医院"
-mainfont: "song"
 format:
-  qcreport-typst: default
+  qcreport-typst:
+    toc: true
+    mainfont: "Songti TC"
+    fontsize: 13pt
 ---
 
 ## 人口情况
