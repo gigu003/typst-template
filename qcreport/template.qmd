@@ -4,6 +4,7 @@ title: |
   肿瘤登记质量控制报告
 subtitle: "第一季度"
 date: today
+lang: "ZH-CN"
 registry: "河南省肿瘤登记处"
 header: "质控报告"
 footer: "https://www.chenq.site"
@@ -16,7 +17,7 @@ format:
   qcreport-typst:
     toc: true
     mainfont: "Songti TC"
-    fontsize: 13pt
+    fontsize: 12pt
 ---
 
 ## 人口情况

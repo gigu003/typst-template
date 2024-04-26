@@ -54,18 +54,78 @@
   )
   
   set par(
-          leading: 0.7em,
+          leading: 1.5em,
           justify: true,
-          first-line-indent: 2em,
           linebreaks: auto,
-          )
+          first-line-indent: 2em,
+    )
+    
   set text(
     font: font,
     size: fontsize
     )
 
-  set heading(numbering: sectionnumbering)
+// 设置标题格式
+set heading(numbering: sectionnumbering)
+show heading: it => locate(loc => {
+    let levels = counter(heading).at(loc)
+    let deepest = if levels != () {
+        levels.last()
+    } else {
+        1
+    }
 
+    set text(12pt)
+    if it.level == 1 [
+        #if deepest !=1 {
+        }
+        #set par(first-line-indent: 0pt)
+        #let is-ack = it.body in ([Acknowledgment], [Acknowledgement])
+        #set align(left)
+        #set text(if is-ack { 15pt } else { 15pt },font:"SimHei")
+        #v(36pt, weak: true)
+        #if it.numbering != none and not is-ack {
+        numbering("1.", deepest)
+        h(7pt, weak: true)
+        }
+        #it.body
+        #v(36pt, weak: true)
+    ] else if it.level == 2 [
+        #set par(first-line-indent: 0pt)
+        #set text(size:14pt,font:"SimHei")
+        #v(24pt, weak: true)
+        #if it.numbering != none {
+        numbering("1.1.",..levels)
+        h(7pt, weak: true)
+        }
+        #it.body
+        #v(24pt, weak: true)
+    ] else if it.level == 3 [
+        #set par(first-line-indent: 0pt)
+        #set text(size:14pt,font:"SimHei")
+        #v(15pt, weak: true)
+        #if it.numbering != none {
+        numbering("1.1.1.",..levels)
+        h(7pt, weak: true)
+        }
+        #it.body
+        #v(15pt, weak: true)
+    ] else [
+        #set par(first-line-indent: 0pt)
+        #set text(size:12pt,font:"SimHei")
+        #v(12pt, weak: true)
+        #if it.numbering != none {
+        numbering("1.1.1.1.",..levels)
+        h(7pt, weak: true)
+        }
+        #it.body
+        #v(12pt, weak: true) 
+    ]
+})
+
+
+    
+    
   align(center)[
     #image(univ_logo, height: 4cm)
     #block(inset: 0.5cm)[
@@ -89,7 +149,7 @@
   align(center)[#line(length: 80%, stroke: 1.5pt + luma(80))]
   
   if registry != none {
-    align(center)[#block(above:1cm, below:5cm, height:5%)[
+    align(center)[#block(above:1cm, below:4cm, height:5%)[
       #text(weight: "bold", size: 15pt)[#registry]
     ]]
   }
@@ -123,8 +183,8 @@
 
   if toc {
     block(above: 2em, below: 2em)[
-    #set par(leading: 1.0em)
-    #set text(size: 13pt)
+    #set par(leading: 1.5em)
+    #set text(size: 12pt)
     #align(center)[
      #outline(
       title: "主要内容",
